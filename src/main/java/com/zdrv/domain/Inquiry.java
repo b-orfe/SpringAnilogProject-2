@@ -8,8 +8,8 @@ import lombok.Data;
 public class Inquiry {
 	
 	
-	@NotBlank
-	private String userId;
+	
+	private int userId;
 	@NotBlank
 	private String title;
 	@NotBlank

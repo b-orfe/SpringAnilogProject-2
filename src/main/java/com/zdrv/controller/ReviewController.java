@@ -114,7 +114,7 @@ public class ReviewController {
 	public String inquiry(Model model) {
 		User user=(User)session.getAttribute("user");
 		Inquiry inquiry = new Inquiry();
-		inquiry.setUserId(user.getLoginId());
+		
 		model.addAttribute("inquiry", inquiry);
 		model.addAttribute("user",user);
 		return "Inquiry" ;
@@ -127,7 +127,8 @@ public class ReviewController {
 			model.addAttribute("inquiry",inquiry);
 			return "Inquiry";
 		}
-		
+		User user=(User)session.getAttribute("user");
+		inquiry.setUserId(user.getId());
 		rsimpl.getInquiry(inquiry);
 		return "redirect:/inquiry/done";
 	}
