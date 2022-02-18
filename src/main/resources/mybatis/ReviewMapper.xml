@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zdrv.mapper.ReviewMapper">
+
+	<resultMap id="ReviewMap" type="com.zdrv.domain.Review"
+		autoMapping="true">
+
+		<association property="anime"
+			javaType="com.zdrv.domain.Anime">
+			<result property="animeName" column="anime_name" />
+			<result property="animeId" column="anime_id" />
+		</association>
+
+	</resultMap>
+
+
+
+
+
+
+	<select id="selectAll" resultMap="ReviewMap">
+
+		select
+		animes.anime_id,
+		users.name,
+		animes.anime_name,
+		reviews.score,
+		reviews.article
+		from reviews
+		left join animes
+		on reviews.anime_id = animes.anime_id
+		left join users
+		on reviews.user_id = users.id;
+
+
+	</select>
+
+	<select id="selectById" resultMap="ReviewMap">
+
+		select
+		user_id,
+		animes.anime_name,
+		animes.anime_id,
+		score,
+		article
+		from reviews
+		left join
+		animes
+		on reviews.anime_id = animes.anime_id
+		where user_id =#{userId}
+		and reviews.anime_id =#{animeId};
+
+	</select>
+
+	<select id="allSelectById" resultMap="ReviewMap"
+		parameterType="int">
+
+		select
+		user_id,
+		animes.anime_name,
+		animes.anime_id,
+		score,
+		article
+		from reviews
+		left join animes
+		on reviews.anime_id =
+		animes.anime_id
+		where user_id =#{x};
+
+	</select>
+
+	<select id="animeSelectById" resultMap="ReviewMap"
+		parameterType="int">
+
+		select
+		animes.anime_id,
+		users.name,
+		animes.anime_name,
+		reviews.score,
+		reviews.article
+		from reviews
+		left join animes
+		on reviews.anime_id =
+		animes.anime_id
+		left join users
+		on reviews.user_id = users.id
+		where animes.anime_id=#{x};
+
+	</select>
+
+	<insert id="insert" parameterType="com.zdrv.domain.Review">
+
+
+		insert into reviews
+		(user_id,anime_id,score,article)
+		value(#{user.id},#{anime.animeId},#{score},#{article})
+		on duplicate key
+		update
+		score=#{score},
+		article=#{article}
+
+
+
+
+
+	</insert>
+
+	<delete id="deleteById">
+		delete from reviews
+		where user_id=#{userId} and
+		anime_id=#{animeId}
+
+	</delete>
+
+
+	<update id="update" parameterType="com.zdrv.domain.Review">
+
+		update reviews set
+		score =
+		#{score},
+		article = #{article}
+		where user_id
+		=#{user.id} and anime_id=#{anime.animeId}
+
+
+	</update>
+
+	<insert id="addInquiry" parameterType="com.zdrv.domain.Inquiry">
+		insert into inquiry
+		(user_id,title,text)
+		value(#{userId},#{title},#{text});
+
+	</insert>
+
+</mapper>

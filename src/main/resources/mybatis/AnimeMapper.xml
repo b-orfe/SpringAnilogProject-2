@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zdrv.mapper.AnimeMapper">
+
+
+	<resultMap id="AnimeMap" type="com.zdrv.domain.Anime"
+		autoMapping="true" />
+
+	<select id="selectAll" resultMap="AnimeMap">
+
+		select * from animes
+	</select>
+
+	<select id="selectById" parameterType="int" resultMap="AnimeMap">
+
+		select * from animes
+		where anime_id =#{id}
+
+	</select>
+
+
+	<select id="countAnimes" resultType="long">
+		select count(*) from animes
+	</select>
+
+	<select id="getLimitedAnimes" resultType="com.zdrv.domain.Anime">
+		select * from animes
+		limit #{offset},#{num}
+
+	</select>
+
+	<select id="searchAnime" resultType="com.zdrv.domain.Anime" parameterType="String">
+		select * from animes
+		where anime_name like concat('%', #{moji}, '%')
+
+	</select>
+
+</mapper>
