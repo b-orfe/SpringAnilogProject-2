@@ -67,7 +67,7 @@
 
 		</table>
 
-		<h3>アニメ一覧</h3>
+		<h3 id="anime">アニメ一覧</h3>
 		<ul>
 			<li th:each="a:${animes}"><a class="button"
 				th:href="@{/list/show/{id}(id=${a.animeId})}"

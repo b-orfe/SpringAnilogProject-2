@@ -8,6 +8,8 @@
 	<link rel="icon" th:href="@{/favicon/favicon3.ico}" />
 </head>
 <body>
+
+	<div class="body">
 	<h1>マイページ</h1>
 	<p>個人情報の確認・登録を行います。</p>
 	
@@ -21,16 +23,15 @@
 	<th>ユーザーID：</th>
 	<td th:text="*{loginId}"></td>
 	</tr>
-	<tr>
-	<th>パスワード：</th>
-	<td th:text="*{loginPass}"></td>
-	</tr>
+	
 	
 	
 	
 	</table>
-	
+	<div class="button">
+	<p><a th:href="@{/user/data}">登録情報変更</a></p>
+	</div>
 	<p><a th:href="@{/list}">ホーム</a></p>
-	
+	</div>
 </body>
 </html>

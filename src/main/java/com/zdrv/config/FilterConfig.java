@@ -13,6 +13,7 @@ public class FilterConfig {
 	@Bean public FilterRegistrationBean<AuthFilter> authFilter() {
 		var bean = new FilterRegistrationBean<>(new AuthFilter());
 		bean.addUrlPatterns("/list/*"); 
+		bean.addUrlPatterns("/user/*"); 
 		// 対応するURL 
 		bean.setOrder(1); 
 		// フィルターの適用順 
