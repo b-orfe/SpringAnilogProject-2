@@ -66,6 +66,18 @@
 			</tr>
 
 		</table>
+		
+		
+		<h3>アニメ検索機能</h3>
+		<form action="" method="post">
+		<p><input type="text"  name="moji"/><input type="submit" value="検索"/></p>
+		
+		</form>
+		
+		<ul th:each="s:${search}"  th:object="${s}" >
+			<li  ><a th:href="@{/list/show/{id}(id=${s.animeId})}" th:text="*{animeName}"></a></li>
+		</ul>
+		
 
 		<h3 id="anime">アニメ一覧</h3>
 		<ul>
@@ -104,15 +116,7 @@
 		</div>
 		
 		
-		<p>アニメ検索機能</p>
-		<form action="" method="post">
-		<p><input type="text"  name="moji"/><input type="submit" value="検索"/></p>
 		
-		</form>
-		
-		<ul th:each="s:${search}"  th:object="${s}" >
-			<li  ><a th:href="@{/list/show/{id}(id=${s.animeId})}" th:text="*{animeName}"></a></li>
-		</ul>
 
 	<div class="footer">
 	<p>お問い合わせは<a th:href="@{/list/inquiry}">こちら</a>から</p>
