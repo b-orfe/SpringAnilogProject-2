@@ -11,12 +11,20 @@
 		where login_id = #{loginId};
 
 	</select>
-	
+
 	<insert id="insert" parameterType="com.zdrv.domain.User">
-	
-	insert users
-	(login_id,login_pass,name)
-	value(#{loginId},#{loginPass},#{name})
-	
+
+		insert users
+		(login_id,login_pass,name)
+		value(#{loginId},#{loginPass},#{name})
+
 	</insert>
+
+	<update id="update" parameterType="com.zdrv.domain.User">
+
+		update users
+		set login_id= #{loginId},login_pass=#{loginPass},name=#{name}
+		where id=#{id}
+	</update>
+
 </mapper>

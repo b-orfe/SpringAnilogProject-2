@@ -130,3 +130,10 @@ a.btn--radius {
 .body h3 a:visited{
 	color:#0080ff;
 }
+
+.header_list p{
+	float:left;
+}
+.h3{
+	clear:left;
+}
