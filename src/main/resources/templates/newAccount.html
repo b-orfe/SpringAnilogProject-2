@@ -2,20 +2,21 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8" />
-	<title>新規登録</title>
+	<title>ユーザー登録</title>
 	<link rel="stylesheet" th:href="@{/css/style.css}" />
 	<link rel="icon" th:href="@{/favicon/favicon3.ico}" />
 </head>
 <body>
 
 <div class="body_add">
-	<h1>新規登録</h1>
+	<h1>ユーザー登録</h1>
 	
 	<div style="color:red;" th:object="${user}">
 	<p th:errors="*{name}"></p>
 	<p th:errors="*{loginId}"></p>
 	<p th:errors="*{loginPass}"></p>
 	</div>
+	
 	
 	<form action="" method="post" th:object="${user}">
 	

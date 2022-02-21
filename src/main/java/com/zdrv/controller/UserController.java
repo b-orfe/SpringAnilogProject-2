@@ -93,5 +93,38 @@ public class UserController {
 		
 	}
 	
+	@GetMapping("/user/data")
+	public String userData(Model model) {
+		
+		User user = (User) session.getAttribute("user");
+		System.out.println(user);
+		model.addAttribute("user",user);
+		return "newAccount";
+	}
 	
+	@PostMapping("/user/data")
+	public String postUserData(@Validated(LoginGroup.class) User user,Model model,Errors errors ) {
+		if(errors.hasErrors()) {
+			model.addAttribute("user",user);
+			return "newAccount";
+		}
+		System.out.println(user);
+		String conf = user.getConfPass();
+		
+		if(!user.getLoginPass().equals(conf)) {
+			errors.rejectValue("confPass", "not.same.pass");
+			return "newAccount";
+		}
+		
+		String hashed = BCrypt.hashpw(user.getLoginPass(), BCrypt.gensalt());
+		user.setLoginPass(hashed);
+		
+		User setUser = (User)session.getAttribute("user");
+		
+		user.setId(setUser.getId());
+		System.out.println(user);
+		userservice.setUpdate(user);
+		
+		return "redirect:/user/data/done";
+	}
 }

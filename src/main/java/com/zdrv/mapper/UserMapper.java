@@ -8,4 +8,5 @@ import com.zdrv.domain.User;
 public interface UserMapper {
 	User findByLoginId(String LoginId);
 	void insert(User user);
+	void update(User user);
 }

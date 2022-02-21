@@ -137,5 +137,10 @@ public class ReviewController {
 	public String inquiryDone() {
 		return "addInquiry";
 	}
+	
+	@GetMapping("/user/data/done")
+	public String userDataDone() {
+		return "addDone";
+	}
 
 }
