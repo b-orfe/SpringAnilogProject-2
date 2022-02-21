@@ -17,6 +17,7 @@ import com.zdrv.domain.Inquiry;
 import com.zdrv.domain.Review;
 import com.zdrv.domain.User;
 import com.zdrv.service.AnimeService;
+import com.zdrv.service.MailService;
 import com.zdrv.service.ReviewService;
 
 @Controller
@@ -32,6 +33,9 @@ public class ReviewController {
 	
 	@Autowired
 	 AnimeService aniimpl;
+	
+	@Autowired
+	MailService mail;
 	
 	@GetMapping
 	public String list(Model model, @RequestParam(defaultValue="1") Integer page ) {
@@ -130,6 +134,8 @@ public class ReviewController {
 		User user=(User)session.getAttribute("user");
 		inquiry.setUserId(user.getId());
 		rsimpl.getInquiry(inquiry);
+		
+		mail.sendMail(inquiry.getText());
 		return "redirect:/inquiry/done";
 	}
 	
