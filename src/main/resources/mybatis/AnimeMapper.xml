@@ -8,6 +8,8 @@
 	<resultMap id="AnimeMap" type="com.zdrv.domain.Anime"
 		autoMapping="true" />
 
+
+
 	<select id="selectAll" resultMap="AnimeMap">
 
 		select * from animes
@@ -15,7 +17,8 @@
 
 	<select id="selectById" parameterType="int" resultMap="AnimeMap">
 
-		select * from animes
+		select *
+		from animes
 		where anime_id =#{id}
 
 	</select>
@@ -31,10 +34,53 @@
 
 	</select>
 
-	<select id="searchAnime" resultType="com.zdrv.domain.Anime" parameterType="String">
+	<select id="searchAnime" resultType="com.zdrv.domain.Anime"
+		parameterType="String">
 		select * from animes
-		where anime_name like concat('%', #{moji}, '%')
+		where anime_name like concat('%',
+		#{moji}, '%')
 
 	</select>
+
+	<select id="allViewAnimes"
+		resultType="com.zdrv.domain.ViewAnime" parameterType="int">
+
+		select
+
+		v.id,v.date,v.title,v.text
+
+		from viewanime as v
+		join users as u
+		on
+		v.user_id = u.id
+		where u.id = #{id}
+
+	</select>
+
+
+	<insert id="viewInsert"
+		parameterType="com.zdrv.domain.ViewAnime">
+
+		insert viewanime
+		(user_id,title,text)
+		value(#{user.id},#{title},#{text});
+
+	</insert>
+
+	<update id="updateView"   parameterType="com.zdrv.domain.ViewAnime">
+		
+		update viewanime
+
+		set title = #{title},text = #{text}
+		where user_id = #{user.id},id=#{viewId}
+
+	</update>
+
+
+
+
+
+
+
 
 </mapper>

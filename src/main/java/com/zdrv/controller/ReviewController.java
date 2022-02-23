@@ -45,6 +45,7 @@ public class ReviewController {
 		model.addAttribute("totalPages", aniimpl.totalPages());
 		model.addAttribute("page", page);
 		model.addAttribute("animes", aniimpl.getAnimes(page));
+		model.addAttribute("viewanimes",aniimpl.getAllViewAnimes(user.getId()));
 		return "list";
 	}
 	
