@@ -18,30 +18,57 @@
 
 		<div class="header">
 			<img src="/images/anilog2.png" alt="anilog" />
-		</div >
+		</div>
 
-		
+
 		<h3>
 			ようこそ。<a th:href="@{/mypage}">[[${session.user.name}]]</a>様
 		</h3>
-		
+
 		<div class="header_list">
 
-		<p>
-			<a class="button" th:href="@{/list/addReview}">レビュー登録</a>
-		</p>
-		
-		<p>
-			<a class="button" th:href="@{/user/data}">ユーザー情報変更</a>
-		</p>
-		
-		<p>
-			<a class="button" th:href="@{/logout}">ログアウト</a>
-		</p>
-		
-		
+			<p>
+				<a class="button" th:href="@{/list/addReview}">レビュー登録</a>
+			</p>
+
+			<p>
+				<a class="button" th:href="@{/user/data}">ユーザー情報変更</a>
+			</p>
+
+			<p>
+				<a class="button" th:href="@{/logout}">ログアウト</a>
+			</p>
+
+
 		</div>
-		
+
+		<h3 class="h3">視聴予定アニメ一覧</h3>
+
+		<p>
+			<a class="button" th:href="@{/list/anime/add}">視聴予定アニメ追加</a>
+		</p>
+
+		<table border="1">
+
+			<tr>
+
+				<th>タイトル</th>
+				<th>登録日</th>
+				<th>備考</th>
+				<th colspan=2>操作</th>
+			</tr>
+
+			<tr th:each="viewanime:${viewanimes}" th:object="${viewanime}">
+				<td th:text="*{title}"></td>
+				<td th:text="*{date}"></td>
+				<td th:text="*{text}"></td>
+				<td><a class="button" th:href="@{/list/anime/edit/{id}(id=*{id})}">編集</a></td>
+				<td><a class="button" th:href="@{/list/anime/comp/{id}(id=*{id})}">完了</a></td>
+			</tr>
+
+		</table>
+
+
 		<h3 class="h3">レビュー一覧</h3>
 
 
@@ -66,18 +93,21 @@
 			</tr>
 
 		</table>
-		
-		
+
+
 		<h3>アニメ検索機能</h3>
 		<form action="" method="post">
-		<p><input type="text"  name="moji"/><input type="submit" value="検索"/></p>
-		
+			<p>
+				<input type="text" name="moji" /><input type="submit" value="検索" />
+			</p>
+
 		</form>
-		
-		<ul th:each="s:${search}"  th:object="${s}" >
-			<li  ><a th:href="@{/list/show/{id}(id=${s.animeId})}" th:text="*{animeName}"></a></li>
+
+		<ul th:each="s:${search}" th:object="${s}">
+			<li><a th:href="@{/list/show/{id}(id=${s.animeId})}"
+				th:text="*{animeName}"></a></li>
 		</ul>
-		
+
 
 		<h3 id="anime">アニメ一覧</h3>
 		<ul>
@@ -114,19 +144,21 @@
 				</th:block>
 			</ul>
 		</div>
-		
-		
-		
 
-	<div class="footer">
-	<p>お問い合わせは<a th:href="@{/list/inquiry}">こちら</a>から</p>
-	</div>
-	
-	<div class="copy">
-		<p>&copy; 2022 Mi LABORATORY</p>
-	</div>
+
+
+
+		<div class="footer">
+			<p>
+				お問い合わせは<a class="button" th:href="@{/list/inquiry}">こちら</a>から
+			</p>
+		</div>
+
+		<div class="copy">
+			<p>&copy; 2022 Mi LABORATORY</p>
+		</div>
 	</div>
 
-	
+
 </body>
 </html>

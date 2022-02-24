@@ -139,4 +139,8 @@ a.btn--radius {
 }
 a{
 	color:white;
+	
+}
+a:visited{
+	color:white;
 }
