@@ -67,19 +67,33 @@
 
 	</insert>
 
-	<update id="updateView"   parameterType="com.zdrv.domain.ViewAnime">
-		
+	<update id="updateView"
+		parameterType="com.zdrv.domain.ViewAnime">
+
 		update viewanime
 
 		set title = #{title},text = #{text}
-		where user_id = #{user.id},id=#{viewId}
+		where user_id =
+		#{user.id} and id=#{id}
 
 	</update>
 
 
+	<select id="selectViewAnime" parameterType="int"
+		resultType="com.zdrv.domain.ViewAnime">
+
+		select * from viewanime
+		where user_id = #{userId} and id=#{ViewId}
+	</select>
 
 
 
+	<delete id="deleteView" parameterType="int">
+
+		delete from viewanime
+		where id = #{ViewId};
+
+	</delete>
 
 
 

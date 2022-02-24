@@ -6,6 +6,7 @@
 <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
 <script th:src="@{/js/dialog.js}" defer="defer"></script>
 
+
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet" th:href="@{/css/style.css}" />
 <link rel="icon" th:href="@{/favicon/favicon3.ico}" />
@@ -27,9 +28,6 @@
 
 		<div class="header_list">
 
-			<p>
-				<a class="button" th:href="@{/list/addReview}">レビュー登録</a>
-			</p>
 
 			<p>
 				<a class="button" th:href="@{/user/data}">ユーザー情報変更</a>
@@ -48,7 +46,7 @@
 			<a class="button" th:href="@{/list/anime/add}">視聴予定アニメ追加</a>
 		</p>
 
-		<table border="1">
+		<table  border="1">
 
 			<tr>
 
@@ -62,12 +60,19 @@
 				<td th:text="*{title}"></td>
 				<td th:text="*{date}"></td>
 				<td th:text="*{text}"></td>
-				<td><a class="button" th:href="@{/list/anime/edit/{id}(id=*{id})}">編集</a></td>
-				<td><a class="button" th:href="@{/list/anime/comp/{id}(id=*{id})}">完了</a></td>
+				<td><a class="button"
+					th:href="@{/list/anime/edit/{id}(id=*{id})}">編集</a></td>
+				<td><a class="button comp-action"
+					th:href="@{/list/anime/comp/{id}(id=*{id})}">完了</a></td>
 			</tr>
 
 		</table>
+		
+		<p></p>
 
+		<p>
+			<a class="button" th:href="@{/list/addReview}">レビュー登録</a>
+		</p>
 
 		<h3 class="h3">レビュー一覧</h3>
 

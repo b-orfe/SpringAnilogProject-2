@@ -64,11 +64,35 @@ public class AnimeController {
 	
 	
 	
-	@GetMapping("/anime/edit")
+	@GetMapping("/anime/edit/{id}")
 	private String edit(@PathVariable int id,Model model) {
 		User user = (User)session.getAttribute("user");
 		
-		model.addAttribute("viewanime",anime.editViewAnimes());
+		model.addAttribute("viewanime",anime.getSelectViewAnimes(user.getId(), id));
+		
 		return "viewadd";
 	}
+	
+	@PostMapping("/anime/edit/{id}")
+	private String editPost(@Valid ViewAnime viewanime,Errors errors,Model model,HttpSession session) {
+		if(errors.hasErrors()) {
+			model.addAttribute("viewanime",viewanime);
+			return "viewadd";
+		}
+		
+		User user = (User)session.getAttribute("user");
+		viewanime.setUser(user);
+		
+		System.out.println(viewanime);
+		anime.updateView(viewanime);
+		
+		return "redirect:/list";
+	}
+	
+	@GetMapping("/anime/comp/{id}")
+	private String deleteView(@PathVariable int id) {
+		anime.deleteView(id);
+		return "redirect:/list";
+	}
+	
 }

@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Param;
 
 import com.zdrv.domain.Anime;
 import com.zdrv.domain.ViewAnime;
-import com.zdrv.domain.ViewAnime2;
 
 @Mapper
 public interface AnimeMapper {
@@ -17,6 +16,9 @@ public interface AnimeMapper {
 	List<Anime> getLimitedAnimes(@Param("offset") int offset,@Param("num") int num);
 	List<Anime> searchAnime(String moji);
 	List<ViewAnime> allViewAnimes(int id);
+	ViewAnime selectViewAnime(@Param("userId") int userId,@Param("ViewId") int ViewId);
 	void viewInsert(ViewAnime viewanime);
-	ViewAnime2 updateView(ViewAnime viewanime);
+	void updateView(ViewAnime viewanime);
+	void deleteView(int ViewId);
+	
 }
