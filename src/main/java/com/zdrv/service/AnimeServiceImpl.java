@@ -94,9 +94,21 @@ public class AnimeServiceImpl implements AnimeService {
 	}
 
 	@Override
-	public ViewAnime2 editViewAnimes(ViewAnime viewanime) {
+	public void updateView(ViewAnime viewanime) {
 		
-		return animemapper.updateView(viewanime);
+		animemapper.updateView(viewanime);
+	}
+
+	@Override
+	public ViewAnime getSelectViewAnimes(int userId, int ViewId) {
+		
+		return animemapper.selectViewAnime(userId, ViewId);
+	}
+
+	@Override
+	public void deleteView(int ViewId) {
+		animemapper.deleteView(ViewId);
+		
 	}
 
 }

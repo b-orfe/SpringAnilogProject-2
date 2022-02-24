@@ -6,3 +6,11 @@ $('.delete-action').click(function(){
 	}
 
 });
+
+const comp_message ="完了してもよろしいですか？"
+$('.comp-action').click(function(){
+	if(!confirm(comp_message)){
+	return false;
+	}
+
+});

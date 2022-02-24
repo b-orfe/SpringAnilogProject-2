@@ -15,7 +15,9 @@ public interface AnimeService {
 	List<Anime> getSearchAnimes(String moji);
 	int totalPages();
 	List<ViewAnime2> getAllViewAnimes(int id);
+	ViewAnime getSelectViewAnimes(int userId,int ViewId);
 	void insertView(ViewAnime viewanime);
-	ViewAnime2 editViewAnimes(ViewAnime viewanime);
+	void updateView(ViewAnime viewanime);
+	void deleteView(int ViewId);
 	
 }
