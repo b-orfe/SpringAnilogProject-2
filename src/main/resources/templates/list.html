@@ -121,7 +121,7 @@
 				th:text="${a.animeName}"></a></li>
 		</ul>
 
-
+<div class="pagea">
 		<div th:if="${totalPages >= 2}" class="container">
 			<ul class="pagination">
 
@@ -148,6 +148,8 @@
 						th:href="@{/list(page=${page + 1})}">&raquo;</a></li>
 				</th:block>
 			</ul>
+		</div>
+		
 		</div>
 
 
