@@ -121,7 +121,11 @@ a.btn--radius {
 	text-align:  right;
 }
 .footer a{
-	color:blue;
+	color:white;
+	
+}
+.footer a:visited{
+	color:white;
 	
 }
 .body h3 a{

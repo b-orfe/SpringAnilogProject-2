@@ -17,7 +17,7 @@ import com.zdrv.domain.Inquiry;
 import com.zdrv.domain.Review;
 import com.zdrv.domain.User;
 import com.zdrv.service.AnimeService;
-import com.zdrv.service.MailService;
+import com.zdrv.service.MailServiceImple;
 import com.zdrv.service.ReviewService;
 
 @Controller
@@ -35,7 +35,7 @@ public class ReviewController {
 	 AnimeService aniimpl;
 	
 	@Autowired
-	MailService mail;
+	MailServiceImple mail;
 	
 	@GetMapping
 	public String list(Model model, @RequestParam(defaultValue="1") Integer page ) {
@@ -56,6 +56,7 @@ public class ReviewController {
 		model.addAttribute("totalPages", aniimpl.totalPages());
 		model.addAttribute("page", page);
 		model.addAttribute("animes", aniimpl.getAnimes(page));
+		model.addAttribute("viewanimes",aniimpl.getAllViewAnimes(user.getId()));
 		model.addAttribute("search",aniimpl.getSearchAnimes(moji)); 
 		return "list";
 	}
@@ -126,7 +127,7 @@ public class ReviewController {
 	}
 	
 	@PostMapping("/inquiry")
-	public String inquiry(@Valid Inquiry inquiry,Errors errors,Model model) {
+	public String inquiryPost(@Valid Inquiry inquiry,Errors errors,Model model) {
 		
 		if(errors.hasErrors()) {
 			model.addAttribute("inquiry",inquiry);

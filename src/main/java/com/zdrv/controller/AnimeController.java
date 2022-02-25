@@ -90,7 +90,7 @@ public class AnimeController {
 	}
 	
 	@GetMapping("/anime/comp/{id}")
-	private String deleteView(@PathVariable int id) {
+	private String compView(@PathVariable int id) {
 		anime.deleteView(id);
 		return "redirect:/list";
 	}

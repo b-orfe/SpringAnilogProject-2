@@ -27,14 +27,23 @@
 	
 	</p>
 	
+	
+	
 	<p>感想:</p>
 	<textarea th:field="*{article}" cols="30" rows="10"></textarea>
+	
+	
+	<p>注意事項</p>
+	<ul>
+		<li>過激な言動、卑猥な言葉を用いることは禁止です。</li>
+		<li>他者を否定する発言はお止めください。</li>
+	</ul>
 	
 	
 	<input type="submit" />
 	</form>
 	
-	<p><a th:href="@{/list}">戻る</a></p>
+	<p><a class="button" th:href="@{/list}">戻る</a></p>
 	</div>
 </body>
 </html>
